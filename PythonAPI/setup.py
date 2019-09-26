@@ -1,4 +1,3 @@
-import numpy as np
 from setuptools import dist, setup, Extension
 
 # To install and compile to your anaconda/python site-packages, simply run:
@@ -13,6 +12,8 @@ INSTALL_REQUIRES = ['setuptools',
 
 dist.Distribution().fetch_build_eggs(INSTALL_REQUIRES)
 
+if True:
+    import numpy as np
 
 ext_modules = [
     Extension(
