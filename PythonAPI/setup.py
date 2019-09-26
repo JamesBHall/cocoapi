@@ -1,13 +1,18 @@
-#from distutils.core import setup
-from setuptools import setup, Extension
-#from Cython.Build import cythonize
-#from distutils.extension import Extension
 import numpy as np
+from setuptools import dist, setup, Extension
 
 # To install and compile to your anaconda/python site-packages, simply run:
 # $ pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
 # Note that the original compile flags below are GCC flags unsupported by the Visual C++ 2015 build tools.
 # They can safely be removed.
+
+INSTALL_REQUIRES = ['setuptools',
+                    'cython',
+                    'numpy',
+                    'matplotlib']
+
+dist.Distribution().fetch_build_eggs(INSTALL_REQUIRES)
+
 
 ext_modules = [
     Extension(
@@ -23,9 +28,6 @@ setup(name='pycocotools',
       package_dir={'pycocotools': 'pycocotools'},
       version='2.0',
       ext_modules=ext_modules,
-      install_requires=[
-          'setuptools',
-          'cython',
-          'numpy',
-          'matplotlib']
+      install_requires=INSTALL_REQUIRES,
+      setup_requires=['cython', 'numpy']
       )
